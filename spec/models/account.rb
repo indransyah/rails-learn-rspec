@@ -20,7 +20,7 @@ RSpec.describe(Account, :type => :model) do
   end
   it 'raise NotEnoughAmount' do
     account_indra = Account.new('Indra', 1_000_000)
-    expect do
+    expect() do
       account_indra.withdraw(5_000_000)
     end.to(raise_error(NotEnoughAmount))
     expect(account_indra.amount).to(eq(1_000_000))
@@ -28,7 +28,7 @@ RSpec.describe(Account, :type => :model) do
   it 'cannot transfer because of not enough amount' do
     account_indra = Account.new('Indra', 1_000_000)
     account_firmansyah = Account.new('Firmansyah', 5_000_000)
-    expect do
+    expect() do
       account_indra.transfer(account_firmansyah, 5_000_000)
     end.to(raise_error(NotEnoughAmount))
     expect(account_indra.amount).to(eq(1_000_000))
